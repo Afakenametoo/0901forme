@@ -41,14 +41,17 @@ const initMap = () => {
         // 矢量底图
         {
             name: 'vec_w',
-            // url: "http://t0.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=c&FORMAT=tiles&TILEMATRIX={z}&TILECOL={x}&TILEROW={y}&tk=" + tdtToken,
+            url: "http://t0.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILECOL={x}&TILEROW={y}&tk=" + tdtToken,
             // url: "http://t{s}.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}",
-            url: "/tiles/sl/vec_w/{z}/{y}/{x}.png",
+            // url:`http://t{s}.tianditu.gov.cn/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=${tdtToken}`,
+            // url: "/tiles/sl/vec_w/{z}/{y}/{x}.png",
             show: true
         },
         {
             name: 'cva_w',
-            url: "/tiles/sl/cva_w/{z}/{y}/{x}.png",
+            // url: "/tiles/sl/cva_w/{z}/{y}/{x}.png",
+            // url: `http://t{s}.tianditu.gov.cn/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=${tdtToken}`,
+            url: "http://t0.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILECOL={x}&TILEROW={y}&tk=" + tdtToken,
             show: true,
         }
     ]
@@ -90,24 +93,25 @@ const initMap = () => {
 //添加wmts影像瓦片图层
 const addRasterWMTSLayer = (map: any, item: any) => {
     if (item.name && item.url) {
-        //1.加载数据源
-        if (map.getSource(item.name) == undefined && item.url) {
-            map.addSource(item.name, {
-                type: 'raster',
-                tiles: [item.url],
-                tileSize: 256,
-            })
-        }
-        // 2.加载地图图层，控制显示隐藏
-        if (map.getLayer(item.name) == undefined) {
-            map.addLayer({
-                id: item.name,
-                type: 'raster',
-                source: item.name,
-                'source-layer': item.name,       //图层名称
-            })
-        }
+    // 数据源不存在时才创建
+    if (!map.getSource(item.name)) {
+      map.addSource(item.name, {
+        type: 'raster',
+        tiles: [item.url],
+        tileSize: 256,
+      });
     }
+    // 图层不存在时才创建
+    if (!map.getLayer(item.name)) {
+      map.addLayer({
+        id: item.name,
+        type: 'raster',
+        source: item.name,
+        'source-layer': item.name,
+        layout: { visibility: 'visible' } // 默认可见
+      });
+    }
+  }
     map.on('zoom', () => {
         const zoom = map.getZoom();
         if (zoom > map.getMaxZoom()) {

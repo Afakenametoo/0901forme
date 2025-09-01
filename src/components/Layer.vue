@@ -58,6 +58,7 @@ import { baseStore, layerStore } from "@/stores";
 import { baseLayer, specialLayer, baseLabel } from "@/data/layerConfig";
 import { ElTree } from 'element-plus';
 import { callRemoveBoxSelect } from '@/stores/globalBoxSelect';
+import { setLyrVisible } from "@/utils/map"; // 确保路径正确
 
 import {
   addClusterPointLayer, addGeoJsonLayer,
@@ -90,14 +91,24 @@ const layer = reactive({
   // 控制图层
   checkFun: (obj, flag) => {
     const layer = toRaw(obj);
+    const map = toRaw(bStore.boxMap);
+    if(!map) return;
+    //处理矢量图层
     if (obj.type === 'image') {
       if (flag) {
-        addRasterWMTSLayer(toRaw(bStore.boxMap), layer);
-        moveLayerAll(toRaw(bStore.boxMap));
+        if (!map.getLayer(layer.name)) {
+        addRasterWMTSLayer(map, layer); // 首次加载时创建图层
       } else {
-        removeLayerById(toRaw(bStore.boxMap), layer.name);
+        setLyrVisible(map, layer.name, true); // 已存在则显示
       }
-    } else if (obj.type === 'line') {
+      moveLayerAll(map);
+      } else {
+        // removeLayerById(map, layer.name);
+        // map.setLayoutProperty(layer.name, 'visibility', 'none');
+        setLyrVisible(map, layer.name, false);
+      }
+    } 
+    else if (obj.type === 'line') {
       if (flag) {
         addGeoJsonLayer(toRaw(bStore.boxMap), layer);
         moveLayerAll(toRaw(bStore.boxMap));
