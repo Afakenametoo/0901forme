@@ -314,6 +314,45 @@ const specialLayer = [
               'text-halo-width': 1,          // 字体描边宽度
             },
           },
+        },
+        {
+          id: 7, // 新增ID（确保唯一）
+          type: 'symbol', // 与井盖一致的点图层类型
+          label: 'WiFi信息', // 图层显示名称
+          showLabel: false, // 默认关闭注记（与其他点图层一致）
+          name: 'WIFI_POINT', // 图层唯一标识（遵循XXX_POINT命名规范）
+          url: '/files/geojson/WIFI_POINT.geojson', // 数据源路径（与其他图层统一）
+          layout: {
+            'icon-image': 'WIFI_ICON', // 引用之前加载的WiFi图标
+            'icon-size': 0.08, // 调整图标大小，使其更小更合适
+            'icon-allow-overlap': true, // 允许图标重叠（与其他图层一致）
+            'icon-ignore-placement': false
+          },
+          filter: ["!", ["has", "point_count"]], // 过滤聚合点（与井盖逻辑一致）
+          mapping: { // 属性映射（显示在弹窗中的字段，参考井盖的mapping）
+            "id": "ID",
+            "ssid": "WiFi名称",
+            "signalQuality": "信号质量(%)",
+            "operator": "运营商"
+          },
+          // 注记图层配置（与雨水井盖的labelLayer保持一致）
+          labelLayer: {
+            type: 'symbol',
+            name: 'WIFI_POINT_label', // 注记图层名称（主图层名+_label）
+            source: 'WIFI_POINT', // 与主图层共享数据源
+            layout: {
+              'text-field': ['get', 'ssid'], // 注记显示WiFi名称
+              'text-size': 12,
+              'text-offset': [0, 1],
+              'text-anchor': 'top',
+              'visibility': 'none' // 默认隐藏
+            },
+            paint: {
+              'text-color': '#000000',
+              'text-halo-color': '#ffffff',
+              'text-halo-width': 1
+            }
+        }
         }
       ]
     },

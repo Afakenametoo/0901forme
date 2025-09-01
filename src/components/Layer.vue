@@ -67,6 +67,7 @@ import {
   removeLayerById, removeListen, setClusterListen, moveLayerAll,
   setCtxtListen,
   setLayerCursor,
+  setWifiLayerVisible,
 } from "@/utils/map";
 import { Logger } from "sass";
 
@@ -148,42 +149,55 @@ const layer = reactive({
       }
     } else if (obj.type === 'symbol') {
       if (flag) {
-        // 添加主图层
-        addClusterPointLayer(toRaw(bStore.boxMap), layer);
-        bStore.addCheckedLayer(layer.name);
-        setClusterListen(toRaw(bStore.boxMap), layer.name);
-        setLayerCursor(toRaw(bStore.boxMap), layer.name + "_cluster", true);
+        // 检查是否为WiFi图层，使用特殊处理
+        if (layer.name === 'WIFI_POINT') {
+          // WiFi图层使用特殊的显示控制，因为它已经在地图初始化时加载
+          setWifiLayerVisible(toRaw(bStore.boxMap), true);
+          bStore.addCheckedLayer(layer.name);
+        } else {
+          // 添加主图层（井盖等传统图层）
+          addClusterPointLayer(toRaw(bStore.boxMap), layer);
+          bStore.addCheckedLayer(layer.name);
+          setClusterListen(toRaw(bStore.boxMap), layer.name);
+          setLayerCursor(toRaw(bStore.boxMap), layer.name + "_cluster", true);
 
-        // 添加注记图层
-        const labelVisibility = layer.showLabel ? 'visible' : 'none';
-        const labelLayer = {
-          type: 'symbol',
-          name: layer.name + '_label',
-          source: layer.name,
-          layout: {
-            'text-field': ['get', 'name'], // 假设注记显示字段为 'name'
-            'text-size': 12,
-            'text-offset': [0, 1],
-            'text-anchor': 'top',
-            'visibility': labelVisibility,
-          },
-          paint: {
-            'text-color': '#000000',
-            'text-halo-color': '#ffffff',
-            'text-halo-width': 1,
-          },
-        };
-        addGeoJsonLayer(toRaw(bStore.boxMap), labelLayer);
-        bStore.addCheckedLayer(labelLayer.name);
+          // 添加注记图层
+          const labelVisibility = layer.showLabel ? 'visible' : 'none';
+          const labelLayer = {
+            type: 'symbol',
+            name: layer.name + '_label',
+            source: layer.name,
+            layout: {
+              'text-field': ['get', 'name'], // 假设注记显示字段为 'name'
+              'text-size': 12,
+              'text-offset': [0, 1],
+              'text-anchor': 'top',
+              'visibility': labelVisibility,
+            },
+            paint: {
+              'text-color': '#000000',
+              'text-halo-color': '#ffffff',
+              'text-halo-width': 1,
+            },
+          };
+          addGeoJsonLayer(toRaw(bStore.boxMap), labelLayer);
+          bStore.addCheckedLayer(labelLayer.name);
+        }
       } else {
-        // 移除主图层和注记图层
-        removeLayerById(toRaw(bStore.boxMap), layer.name);
-        removeLayerById(toRaw(bStore.boxMap), layer.name + "_cluster");
-        removeLayerById(toRaw(bStore.boxMap), layer.name + "_cluster_count");
-        removeLayerById(toRaw(bStore.boxMap), layer.name + "_label");
-        removeListen(toRaw(bStore.boxMap), layer.name + "_cluster");
-        setLayerCursor(toRaw(bStore.boxMap), layer.name + "_cluster", false);
-        moveLayerAll(toRaw(bStore.boxMap));
+        // 检查是否为WiFi图层
+        if (layer.name === 'WIFI_POINT') {
+          // 隐藏WiFi图层
+          setWifiLayerVisible(toRaw(bStore.boxMap), false);
+        } else {
+          // 移除传统图层
+          removeLayerById(toRaw(bStore.boxMap), layer.name);
+          removeLayerById(toRaw(bStore.boxMap), layer.name + "_cluster");
+          removeLayerById(toRaw(bStore.boxMap), layer.name + "_cluster_count");
+          removeLayerById(toRaw(bStore.boxMap), layer.name + "_label");
+          removeListen(toRaw(bStore.boxMap), layer.name + "_cluster");
+          setLayerCursor(toRaw(bStore.boxMap), layer.name + "_cluster", false);
+          moveLayerAll(toRaw(bStore.boxMap));
+        }
         callRemoveBoxSelect();
       }
     }
@@ -210,7 +224,20 @@ const setLayerVisible = (value: boolean, dataName: string, type: string) => {
   const visibility = value ? "visible" : "none";
   const layerName = type === 'label' ? dataName + '_label' : dataName + '_dashed';
 
-  if (toRaw(bStore.boxMap).getLayer(layerName)) {
+  // 特殊处理WiFi图层的注记
+  if (dataName === 'WIFI_POINT' && type === 'label') {
+    // WiFi图层的注记显示在wifi-points图层上
+    if (toRaw(bStore.boxMap).getLayer('wifi-points')) {
+      const currentLayout = toRaw(bStore.boxMap).getLayoutProperty('wifi-points', 'text-field');
+      if (value) {
+        // 显示注记：设置text-field为ssid
+        toRaw(bStore.boxMap).setLayoutProperty('wifi-points', 'text-field', ['get', 'ssid']);
+      } else {
+        // 隐藏注记：清空text-field
+        toRaw(bStore.boxMap).setLayoutProperty('wifi-points', 'text-field', '');
+      }
+    }
+  } else if (toRaw(bStore.boxMap).getLayer(layerName)) {
     toRaw(bStore.boxMap).setLayoutProperty(layerName, "visibility", visibility);
   }
 

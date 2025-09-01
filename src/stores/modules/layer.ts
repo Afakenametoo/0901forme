@@ -10,7 +10,7 @@ export const layerStore = defineStore(
         // 底图图层选中
         const baseLayer: Ref<any[]> = ref([1, 2]);
         // 管线图层选中
-        const specialLayer: Ref<any[]> = ref([]);
+        const specialLayer: Ref<any[]> = ref([7]); // 默认选中WiFi图层
 
         // 设置方法
         const setCurrentLayerId = (val: number) => {
