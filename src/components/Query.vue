@@ -255,6 +255,10 @@
           layers.push('污水管线');
           selectedLayers.push("WS_LINE");
           break;
+        case 7:
+          layers.push('WIFI_POINT');
+          selectedLayers.push("WIFI_POINT_cluster");
+          break;
       }
     });
     return layers;

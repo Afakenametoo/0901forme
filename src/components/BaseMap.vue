@@ -29,14 +29,16 @@
 import layerManage from "@/assets/tcgl.svg";
 import infoInquiry from "@/assets/xxcx.svg";
 import dataStatistics from "@/assets/sjtj.svg";
-import { initMap, removeAllLayers } from "@/utils/map";
+import { initMap, removeAllLayers, initWifiLayer, loadWifiData, setWifiClickListener } from "@/utils/map";
 import mapboxgl from "mapbox-gl";
-import { baseStore } from "@/stores";
+import { baseStore, statisticsStore } from "@/stores";
 import BufferRangeSelector from "@/components/BufferRangeSelector.vue";
+import { fetchWifiPoints } from "@/data/wifiData";
 
 const props = defineProps(["toolbar"]);
 const { toolbar } = toRefs(props);
 const bStore = baseStore();
+const sStore = statisticsStore();
 
 let options = reactive([
   { id: 1, name: '图层管理', icon: layerManage },
@@ -44,7 +46,7 @@ let options = reactive([
   { id: 3, name: '数据统计', icon: dataStatistics },
 ]);
 
-let currentSelect = ref(0);
+let currentSelect = ref(1); // 默认选中图层管理，这样用户可以看到WiFi图层控制
 let isBufferActive = ref(false);
 let bMap: any = null;
 let selectedPoint: any = null;
@@ -96,9 +98,94 @@ const onMapClick = (event: mapboxgl.MapMouseEvent) => {
 
 onMounted(async () => {
   bMap = initMap();
-  bMap.on('load', () => {
+  bMap.on('load', async () => {
     bStore.setMapValue(bMap);
     bMap.on('click', onMapClick);
+    
+    // 初始化WiFi图层
+    initWifiLayer(bMap);
+    
+    // 加载WiFi数据
+    try {
+      // 获取当前地图范围作为WiFi数据生成区域
+      const bounds = bMap.getBounds();
+      const wifiData = await fetchWifiPoints(2000, [
+        bounds.getWest(),
+        bounds.getSouth(), 
+        bounds.getEast(),
+        bounds.getNorth()
+      ]);
+      
+      // 加载WiFi数据到地图
+      loadWifiData(bMap, wifiData);
+      
+      // 设置WiFi点击监听
+      setWifiClickListener(bMap);
+      
+      // 更新WiFi点数统计
+      sStore.setWifiPointCount(wifiData.length);
+      
+      console.log('WiFi数据加载完成:', wifiData.length, '个点');
+      console.log('WiFi数据样例:', wifiData.slice(0, 3));
+      
+      // 强制显示WiFi图层
+      setTimeout(() => {
+        const map = bStore.boxMap;
+        if (map.getLayer('wifi-points')) {
+          map.setLayoutProperty('wifi-points', 'visibility', 'visible');
+          console.log('wifi-points图层已设置为可见');
+        }
+        if (map.getLayer('wifi-clusters')) {
+          map.setLayoutProperty('wifi-clusters', 'visibility', 'visible');
+          console.log('wifi-clusters图层已设置为可见');
+        }
+        if (map.getLayer('wifi-cluster-count')) {
+          map.setLayoutProperty('wifi-cluster-count', 'visibility', 'visible');
+          console.log('wifi-cluster-count图层已设置为可见');
+        }
+        
+        // 强制重新渲染地图
+        map.triggerRepaint();
+        
+        // 输出图层顺序调试信息
+        const layers = map.getStyle().layers;
+        console.log('当前图层列表:', layers.map(l => l.id));
+        
+        // 添加一个测试点到地图中心
+        const center = map.getCenter();
+        const testWifiData = {
+          type: 'FeatureCollection',
+          features: [{
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [center.lng, center.lat]
+            },
+            properties: {
+              id: 'test-wifi',
+              ssid: '测试WiFi',
+              signalQuality: 100,
+              operator: '测试'
+            }
+          }]
+        };
+        
+        // 更新WiFi数据源，包含测试点
+        if (map.getSource('wifi-source')) {
+          const currentData = map.getSource('wifi-source')._data;
+          currentData.features.push(testWifiData.features[0]);
+          map.getSource('wifi-source').setData(currentData);
+          console.log('已添加测试WiFi点到地图中心:', center);
+        }
+        
+        console.log('WiFi图层强制显示完成');
+      }, 1000);
+      
+      // 默认开启图层管理面板，让用户能看到WiFi图层控制
+      toolbar.value.layerState = true;
+    } catch (error) {
+      console.error('WiFi数据加载失败:', error);
+    }
   });
 });
 
