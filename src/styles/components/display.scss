@@ -1,0 +1,35 @@
+.display-container {
+  position: absolute;
+  //bottom: 7vh;
+  bottom: 4vh;
+  left: 24vw;
+  width: 68vw;
+  height: 40vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: rgba(252, 253, 250, 0.5);
+
+  .close {
+    position: absolute;
+    right: 1vw;
+    top: 1vh;
+  }
+
+  .title {
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 1rem;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: row;
+    margin: 1px 10px 10px;
+    height: 100%;
+    background-color: rgb(252, 253, 250);
+  }
+}

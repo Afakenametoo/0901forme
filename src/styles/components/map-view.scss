@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'MSYHBD';
+    src: url('@/styles/font/MSYHBD.TTC') format('truetype');
+    font-display: swap;
+  }
+  
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden !important;
+  
+    .baseMap {
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
+  
+    .tools {
+      z-index: 2;
+      position: absolute;
+      right: 1.2vw;
+      top: 7vh;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .item {
+      width: 14.2vw;
+      height: 7vh;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      margin-left: 0;
+      text-indent: 6rem; /* 控制文字相对于左边的偏移 */
+      background-size: 80%;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: black;
+      font-size: 1.15rem;
+      font-family: 'MSYHBD', sans-serif;
+    }
+  
+  
+    .item.selected {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border: 2px solid #f2fe60;
+    }
+  
+    .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  
+    .TL {
+      position: absolute;
+      bottom: 7.5vh;
+      right: 1vw;
+      width: 11vw;
+      height: auto;
+      z-index: 3;
+    }
+  }

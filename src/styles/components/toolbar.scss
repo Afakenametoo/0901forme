@@ -1,0 +1,94 @@
+.toolbar {
+    position: absolute;
+    top: calc(5vh + 20px);
+    right: 17vw;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.toolbar-btn {
+    background: transparent;
+    border: none;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #000000;
+}
+
+.toolbar-btn:hover {
+    transform: scale(1.1);
+}
+
+.toolbar-btn img {
+    width: 22px;
+    height: 22px;
+    transition: all 0.3s;
+}
+
+.toolbar-btn img:hover {
+    filter: brightness(1.2);
+}
+
+.toolbar-btn span {
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.buffer-slider {
+    position: absolute;
+    top: calc(5vh + 100px);
+    right: 17vw;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buffer-slider span {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.buffer-slider input {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.buffer-distance-display {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.buffer-slider .button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.buffer-slider button {
+    padding: 5px 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buffer-slider button:hover {
+    background: #0056b3;
+}

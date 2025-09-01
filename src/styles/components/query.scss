@@ -1,0 +1,163 @@
+.query-container {
+  position: absolute;
+  top: 8vh;
+  left: 1vw;
+  width: 24vw;
+  height: 88vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(252, 253, 250, 0.7);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* 添加阴影 */
+  padding: 10px;
+}
+
+.title {
+  margin-left: 1vw;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1vh;
+  height: 100%;
+  background-color: rgb(252, 253, 250);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.left-box {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.left-box-button {
+  margin-left: 0;
+  margin-top: 1vh;
+  border: none;
+  padding: 8px 12px;
+  background-color: #4378b0;
+  /* 深蓝色背景 */
+  color: white;
+  border-radius: 5px;
+  /* 圆角按钮 */
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.left-box-button:hover {
+  background-color: #0000ff;
+  /* 鼠标悬停时变色 */
+}
+
+.right-s-box {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.right-box-title {
+  flex-direction: row;
+  font-size: 1rem;
+  align-self: flex-start;
+  margin-left: 1vw;
+  margin-top: 1vh;
+  font-weight: 500;
+  color: #333;
+}
+
+.clear-btn:hover {
+  color: #3f4b8f;
+}
+
+.right-box-group {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1vw;
+  margin-top: 1vh;
+  align-self: flex-start;
+}
+
+.right-t-box {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 10px;
+}
+
+.bottom-right-button {
+  position: fixed;
+  right: 3vh;
+  bottom: 4vh;
+  z-index: 999;
+  font-size: 14px;
+  background-color: #5c6bc0;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bottom-right-button:hover {
+  background-color: #3f4b8f;
+}
+
+.right-t-box-select {
+  margin-bottom: 1vh;
+}
+
+.label-text {
+  display: inline-block;
+  text-align: left;
+  margin-left: 0.5vw;
+  margin-top: 0.5vh;
+  margin-bottom: 1vh;
+}
+
+.select-input {
+  width: 90%;
+  margin-left: 0.5vw;
+  margin-top: 0.5vw;
+}
+
+.right-t-box-but {
+  margin-top: 1vh;
+}
+
+.query-btn,
+.clear-btn-2 {
+  margin-top: 0.5vh;
+  margin-left: 0.5vw;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: #5c6bc0; 
+  transition: color 0.3s ease;
+}
+
+.clear-btn-1 {
+  display: flex;
+  margin-top: 1vh;
+  height: 3vh;
+  width: 66%;
+  font-size: 0.95rem;
+  background-color: transparent;
+  color: #5c6bc0; 
+  cursor: pointer;
+  transition: color 0.3s ease;
+}

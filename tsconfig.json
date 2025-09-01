@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    /* 官网文档配置 https://aka.ms/tsconfig */
+
+    /*允许引入js文件*/
+    "allowJs": true,
+    /**创建生成js文件对应的map文件*/
+    "sourceMap": true,
+    /**解析非相对模块名的基准目录*/
+    "baseUrl": ".",
+    // 静态 + 引用
+    "module": "esnext",
+    // 模块解析策略，是指编译器在查找导入模块内容时所遵循的流程
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "global.d.ts"
+  ],
+  "ts-node": {
+    "esm": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/data/*.ts",
+    "src/data/*.js"
+  ]
+}

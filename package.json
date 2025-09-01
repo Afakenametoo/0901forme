@@ -1,0 +1,46 @@
+{
+  "name": "feat-v0.1-initial",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --mode development",
+    "build": "vite build --mode deploy",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.5.0",
+    "@turf/turf": "^7.2.0",
+    "@turf/within": "^4.7.3",
+    "@vitejs/plugin-vue-jsx": "^4.0.1",
+    "axios": "^1.7.5",
+    "crypto-js": "^4.2.0",
+    "echarts": "^5.5.0",
+    "element-plus": "^2.7.3",
+    "html2canvas": "^1.4.1",
+    "js-web-screen-shot": "^1.9.9-rc.26",
+    "mapbox-gl": "^3.10.0",
+    "ol": "^10.4.0",
+    "pinia": "^2.3.0",
+    "pinia-plugin-persistedstate": "^3.2.1",
+    "qs": "^6.12.1",
+    "sass": "^1.77.1",
+    "sass-loader": "^14.2.1",
+    "terraformer-wkt-parser": "^1.2.1",
+    "terser": "^5.36.0",
+    "unplugin-vue-components": "^0.27.4",
+    "vite-plugin-singlefile": "^2.0.3",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^5.4.3",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "unplugin-auto-import": "^0.17.8",
+    "vite": "^5.2.0",
+    "vue-tsc": "^2.0.6"
+  }
+}

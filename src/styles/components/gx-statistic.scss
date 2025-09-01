@@ -1,0 +1,45 @@
+.gx-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  .top-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .select-box {
+      display: flex;
+      flex-direction: row;
+      //align-items: center;
+      //margin-left: 0.5vw;
+      margin-top: 0.5vh;
+      //margin-bottom: 1vh;
+      //justify-content: center;
+
+      .title {
+        font-weight: bold;
+        margin-right: 1.5vw;
+        min-width: 4.5vw;
+      }
+    }
+  }
+
+  .bottom-container {
+    width: 43vw;
+    height: 67vh;
+    //height: 50vh;
+    display: flex;
+    flex-direction: column;
+    .left-container {
+      width: 43vw;
+      height: 33vh;
+    }
+
+    .right-container {
+      width: 43vw;
+      height: 33vh;
+    }
+  }
+}
