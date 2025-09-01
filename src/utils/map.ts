@@ -84,6 +84,72 @@ const initMap = () => {
                 map.addImage('YS_H', image);  // 添加图标到 Mapbox
             });
         }
+        // 创建简单的WiFi图标
+        if(!map.hasImage('WIFI_ICON')){
+            // 创建一个简单但醒目的WiFi图标
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+                // 绘制绿色圆形背景
+                ctx.fillStyle = '#00A86B';
+                ctx.beginPath();
+                ctx.arc(16, 16, 15, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // 绘制白色边框
+                ctx.strokeStyle = '#FFFFFF';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(16, 16, 15, 0, 2 * Math.PI);
+                ctx.stroke();
+                
+                // 绘制大号"W"字符
+                ctx.fillStyle = '#FFFFFF';
+                ctx.font = 'bold 16px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('W', 16, 16);
+                
+                const imageData = ctx.getImageData(0, 0, 32, 32);
+                map.addImage('WIFI_ICON', imageData);
+                console.log('WiFi图标创建成功');
+            }
+        }
+        
+        // 创建WiFi高亮图标
+        if (!map.hasImage('WIFI_ICON_H')) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+                // 绘制金色圆形背景
+                ctx.fillStyle = '#FFD700';
+                ctx.beginPath();
+                ctx.arc(16, 16, 15, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // 绘制黑色边框
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(16, 16, 15, 0, 2 * Math.PI);
+                ctx.stroke();
+                
+                // 绘制大号"W"字符
+                ctx.fillStyle = '#000000';
+                ctx.font = 'bold 16px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('W', 16, 16);
+                
+                const imageData = ctx.getImageData(0, 0, 32, 32);
+                map.addImage('WIFI_ICON_H', imageData);
+                console.log('WiFi高亮图标创建成功');
+            }
+        }
     })
     map._logoControl && map.removeControl(map._logoControl) //去除mapbox logo
     map.addControl(new mapboxgl.ScaleControl())
@@ -452,6 +518,14 @@ const addSelect = (map: any, layer: any, selectId: any) => {
                 'YS'
             ])
         }
+        else if(layer.name==="WIFI_POINT"){
+            map.setLayoutProperty(layer.name, 'icon-image', [
+                'case',
+                ['match', ['get', 'id'], selectId, true, false],
+                'WIFI_ICON_H', // 高亮图标
+                'WIFI_ICON'    // 默认图标
+            ]);
+        }
     } else {
         if (layer.name === 'YS_LINE') {
             map.setPaintProperty(layer.name, 'line-color', [
@@ -656,6 +730,265 @@ const loadLocalGeojson = async (path: any) => {
     return data
 }
 
+// ==================== WiFi相关功能函数 ====================
+
+/**
+ * 初始化WiFi图层
+ * @param map 地图实例
+ */
+const initWifiLayer = (map: any) => {
+    // 添加WiFi数据源
+    if (!map.getSource('wifi-source')) {
+        map.addSource('wifi-source', {
+            type: 'geojson',
+            data: {
+                type: 'FeatureCollection',
+                features: []
+            },
+            cluster: true,
+            clusterMaxZoom: 12,
+            clusterRadius: 20
+        });
+    }
+
+    // 添加WiFi聚合圆点图层
+    if (!map.getLayer('wifi-clusters')) {
+        map.addLayer({
+            id: 'wifi-clusters',
+            type: 'circle',
+            source: 'wifi-source',
+            filter: ['has', 'point_count'],
+            paint: {
+                'circle-color': [
+                    'step',
+                    ['get', 'point_count'],
+                    '#51bbd6',
+                    10,
+                    '#f1f075',
+                    30,
+                    '#f28cb1'
+                ],
+                'circle-radius': [
+                    'step',
+                    ['get', 'point_count'],
+                    15,
+                    10,
+                    20,
+                    30,
+                    25
+                ]
+            }
+        });
+    }
+
+    // 添加WiFi聚合数量文字图层
+    if (!map.getLayer('wifi-cluster-count')) {
+        map.addLayer({
+            id: 'wifi-cluster-count',
+            type: 'symbol',
+            source: 'wifi-source',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': '{point_count_abbreviated}',
+                'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
+                'text-size': 12
+            }
+        });
+    }
+
+    // 添加WiFi单点图层
+    if (!map.getLayer('wifi-points')) {
+        map.addLayer({
+            id: 'wifi-points',
+            type: 'symbol',
+            source: 'wifi-source',
+            filter: ['!', ['has', 'point_count']],
+            layout: {
+                'icon-image': 'WIFI_ICON',
+                'icon-size': 0.4,
+                'icon-anchor': 'center',
+                'icon-allow-overlap': true,
+                // 临时禁用文字标签，只显示图标
+                // 'text-field': ['get', 'ssid'],
+                // 'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
+                // 'text-offset': [0, 1.5],
+                // 'text-anchor': 'top',
+                // 'text-size': 10
+            },
+            paint: {
+                'text-color': '#000000',
+                'text-halo-color': '#ffffff',
+                'text-halo-width': 1
+            }
+        });
+    }
+};
+
+/**
+ * 加载WiFi点数据到地图
+ * @param map 地图实例
+ * @param wifiData WiFi数据数组
+ */
+const loadWifiData = (map: any, wifiData: any[]) => {
+    if (!map.getSource('wifi-source')) {
+        console.log('初始化WiFi图层...');
+        initWifiLayer(map);
+    }
+    
+    const geoJsonData = {
+        type: 'FeatureCollection',
+        features: wifiData.map(wifi => ({
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: wifi.coordinates
+            },
+            properties: {
+                id: wifi.id,
+                type: wifi.type,
+                ssid: wifi.ssid,
+                signalQuality: wifi.signalQuality,
+                operator: wifi.operator,
+                selected: wifi.selected,
+                cz: wifi.cz
+            }
+        }))
+    };
+    
+    console.log('WiFi GeoJSON数据:', geoJsonData);
+    console.log('WiFi数据源是否存在:', !!map.getSource('wifi-source'));
+    
+    if (map.getSource('wifi-source')) {
+        map.getSource('wifi-source').setData(geoJsonData);
+        console.log('WiFi数据已加载到地图');
+        
+        // 检查图层是否存在
+        setTimeout(() => {
+            console.log('WiFi图层检查:');
+            console.log('- wifi-clusters图层:', !!map.getLayer('wifi-clusters'));
+            console.log('- wifi-cluster-count图层:', !!map.getLayer('wifi-cluster-count'));
+            console.log('- wifi-points图层:', !!map.getLayer('wifi-points'));
+            console.log('- WIFI_ICON图标:', !!map.hasImage('WIFI_ICON'));
+        }, 500);
+    } else {
+        console.error('WiFi数据源不存在，无法加载数据');
+    }
+};
+
+/**
+ * 设置WiFi图层点击事件监听
+ * @param map 地图实例
+ */
+const setWifiClickListener = (map: any) => {
+    // WiFi点击事件
+    map.on('click', 'wifi-points', (e: any) => {
+        if (e.defaultPrevented) return;
+        
+        const clickedFeature = e.features[0];
+        if (clickedFeature) {
+            // 清除之前的选择
+            // clearSelect(map);
+            
+            // 设置弹窗内容
+            const wifiMapping = {
+                id: 'ID',
+                ssid: 'WiFi名称',
+                signalQuality: '信号质量(%)',
+                operator: '运营商',
+                cz: '操作'
+            };
+            
+            const infos = [{
+                name: 'WiFi点信息',
+                properties: clickedFeature.properties,
+                mapping: wifiMapping
+            }];
+            
+            const popupInfo = {
+                infos: infos,
+                option: null,
+                lnglat: e.lngLat
+            };
+            
+            bStore.setPopupInfo(popupInfo);
+            removeClickedFeas(map);
+            
+            // 高亮选中的WiFi点
+            const hoveredWifiId = clickedFeature.properties.id;
+            highlightWifiPoint(map, hoveredWifiId);
+        }
+        e.preventDefault();
+    });
+
+    // WiFi聚合点击事件
+    map.on('click', 'wifi-clusters', (e: any) => {
+        if (e.defaultPrevented) return;
+        
+        const features = map.queryRenderedFeatures(e.point, {
+            layers: ['wifi-clusters']
+        });
+        const clusterId = features[0].properties.cluster_id;
+        
+        map.getSource('wifi-source').getClusterExpansionZoom(
+            clusterId,
+            (err: any, zoom: number) => {
+                if (err) return;
+                map.easeTo({
+                    center: features[0].geometry.coordinates,
+                    zoom: zoom
+                });
+            }
+        );
+        e.preventDefault();
+    });
+
+    // 鼠标悬停效果
+    map.on('mouseenter', 'wifi-points', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'wifi-points', () => {
+        map.getCanvas().style.cursor = '';
+    });
+
+    map.on('mouseenter', 'wifi-clusters', () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('mouseleave', 'wifi-clusters', () => {
+        map.getCanvas().style.cursor = '';
+    });
+};
+
+/**
+ * 高亮WiFi点
+ * @param map 地图实例
+ * @param wifiId WiFi点ID
+ */
+const highlightWifiPoint = (map: any, wifiId: string) => {
+    // 这里可以添加高亮逻辑，比如改变图标
+    console.log('高亮WiFi点:', wifiId);
+};
+
+/**
+ * 控制WiFi图层显示/隐藏
+ * @param map 地图实例
+ * @param visible 是否显示
+ */
+const setWifiLayerVisible = (map: any, visible: boolean) => {
+    const visibility = visible ? 'visible' : 'none';
+    
+    if (map.getLayer('wifi-clusters')) {
+        map.setLayoutProperty('wifi-clusters', 'visibility', visibility);
+    }
+    if (map.getLayer('wifi-cluster-count')) {
+        map.setLayoutProperty('wifi-cluster-count', 'visibility', visibility);
+    }
+    if (map.getLayer('wifi-points')) {
+        map.setLayoutProperty('wifi-points', 'visibility', visibility);
+    }
+};
+
 export {
     initMap,
     addVecWMTSLayer,
@@ -674,5 +1007,10 @@ export {
     removeClickedFeas,
     moveLayer,
     moveLayerAll,
-    setLayerVisible
+    setLayerVisible,
+    // WiFi相关功能
+    initWifiLayer,
+    loadWifiData,
+    setWifiClickListener,
+    setWifiLayerVisible
 }
