@@ -17,6 +17,7 @@ export const statisticsStore = defineStore("statistics", {
     YS_POINT_COUNT: 25594,
     WS_LINE_LENGTH: 260.425,
     YS_LINE_LENGTH: 425.792,
+    WIFI_POINT_COUNT: 12345,
   }),
   actions: {
     // 初始化统计数据
@@ -25,6 +26,7 @@ export const statisticsStore = defineStore("statistics", {
       this.YS_POINT_COUNT = 0;
       this.WS_LINE_LENGTH = 0.0;
       this.YS_LINE_LENGTH = 0.0;
+      this.WIFI_POINT_COUNT = 0;
     },
     incrementPointCount(type: "WS" | "YS") {
       if (type === "WS") this.WS_POINT_COUNT++;
@@ -33,6 +35,12 @@ export const statisticsStore = defineStore("statistics", {
     addLineLength(type: "WS" | "YS", length: number) {
       if (type === "WS") this.WS_LINE_LENGTH += length;
       if (type === "YS") this.YS_LINE_LENGTH += length;
+    },
+    setWifiPointCount(count: number) {
+      this.WIFI_POINT_COUNT = count;
+    },
+    incrementWifiPointCount() {
+      this.WIFI_POINT_COUNT++;
     },
   },
 });

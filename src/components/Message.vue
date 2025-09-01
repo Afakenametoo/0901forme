@@ -32,6 +32,14 @@
         {{ sStore.WS_LINE_LENGTH.toFixed(4) }}
       </div>
     </div>
+    <div class="item wifipoint">
+      <div class="message">
+        WiFi点数共计(个)
+      </div>
+      <div class="num">
+        {{ sStore.WIFI_POINT_COUNT.toFixed(0) }}
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -98,6 +106,9 @@ onMounted(() => {
 
 .wsgx {
   background-image: url("@/assets/WSGX.svg");
+}
+.wifipoint {
+  background-image: url("@/assets/WIFI.svg");
 }
 
 .message {
