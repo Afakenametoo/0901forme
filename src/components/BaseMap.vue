@@ -107,13 +107,17 @@ onMounted(async () => {
     
     // 加载WiFi数据
     try {
-      // 获取当前地图范围作为WiFi数据生成区域
+      // 获取当前地图范围并扩大作为WiFi数据生成区域
       const bounds = bMap.getBounds();
+      const expandFactor = 0.5; // 扩大50%
+      const lngDiff = bounds.getEast() - bounds.getWest();
+      const latDiff = bounds.getNorth() - bounds.getSouth();
+      
       const wifiData = await fetchWifiPoints(2000, [
-        bounds.getWest(),
-        bounds.getSouth(), 
-        bounds.getEast(),
-        bounds.getNorth()
+        bounds.getWest() - lngDiff * expandFactor,   // 向西扩展
+        bounds.getSouth() - latDiff * expandFactor,  // 向南扩展
+        bounds.getEast() + lngDiff * expandFactor,   // 向东扩展
+        bounds.getNorth() + latDiff * expandFactor   // 向北扩展
       ]);
       
       // 加载WiFi数据到地图
@@ -127,6 +131,12 @@ onMounted(async () => {
       
       console.log('WiFi数据加载完成:', wifiData.length, '个点');
       console.log('WiFi数据样例:', wifiData.slice(0, 3));
+      
+      // 设置适当的缩放级别以显示聚合效果
+      setTimeout(() => {
+        bMap.setZoom(13);  // 降低缩放级别，让聚合效果更明显
+        console.log('地图缩放级别已调整为13，以显示WiFi聚合效果');
+      }, 500);
       
       // 强制显示WiFi图层
       setTimeout(() => {

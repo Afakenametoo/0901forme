@@ -13,7 +13,7 @@ const baseUrl = 'http://192.168.31.183:8183'
 //初始化地图
 const initMap = () => {
     //去除token
-    mapboxgl.accessToken = ''
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZmdqaXBvbW0iLCJhIjoiY21kYnVpczRiMTBydzJpcHpibnE5N2p5dCJ9.2erVYw5qSP341CeeigQUFw'
 
     class Cjmapbox extends mapboxgl.Map {
         __proto__: any;
@@ -26,12 +26,12 @@ const initMap = () => {
     const map = new mapboxgl.Map({
         container: 'baseMap',
         center: [120.868041, 29.513075],
-        style: mStyle,
+        // style: mStyle,
         attributionControl: false,
         zoom: 16, //图层
         pitch: 0, //地图倾斜
         maxZoom: 20, //最大图层
-        minZoom: 10, //最小图层,
+        minZoom: 8, //最小图层,
         // renderWorldCopies: true
         preserveDrawingBuffer: true  //需要使用html2canvas插件截图，则需开启该功能
     })
@@ -270,7 +270,7 @@ const addClusterPointLayer = (map: any, item: any, options: { beforeId?: string 
                 type: 'geojson',
                 data: item.url,
                 cluster: true,
-                clusterMaxZoom: 17,
+                clusterMaxZoom: 10,
                 clusterRadius: 50
             })
         }
@@ -737,7 +737,7 @@ const loadLocalGeojson = async (path: any) => {
  * @param map 地图实例
  */
 const initWifiLayer = (map: any) => {
-    // 添加WiFi数据源
+    // 添加WiFi数据源 - 优化聚合设置
     if (!map.getSource('wifi-source')) {
         map.addSource('wifi-source', {
             type: 'geojson',
@@ -746,12 +746,14 @@ const initWifiLayer = (map: any) => {
                 features: []
             },
             cluster: true,
-            clusterMaxZoom: 12,
-            clusterRadius: 20
+            clusterMinZoom:7,
+            clusterMaxZoom: 15,  // 在更高的缩放级别（18）才停止聚合，让聚合效果更持久
+            clusterRadius: 50    // 增大聚合半径，让更多点聚合在一起
         });
+        console.log('WiFi数据源已创建，优化聚合设置: maxZoom=18, radius=50');
     }
 
-    // 添加WiFi聚合圆点图层
+    // 添加WiFi聚合圆点图层 - 参考示例代码优化样式
     if (!map.getLayer('wifi-clusters')) {
         map.addLayer({
             id: 'wifi-clusters',
@@ -759,44 +761,62 @@ const initWifiLayer = (map: any) => {
             source: 'wifi-source',
             filter: ['has', 'point_count'],
             paint: {
+                // 参考示例的配色方案，根据聚合数量动态调整颜色
                 'circle-color': [
                     'step',
                     ['get', 'point_count'],
-                    '#51bbd6',
+                    '#51bbd6',    // 少于10个点：浅蓝色
                     10,
-                    '#f1f075',
-                    30,
-                    '#f28cb1'
+                    '#f1f075',    // 10-20个点：黄色  
+                    20,
+                    '#f28cb1',    // 20-75个点：粉色
+                    75,
+                    '#ac41bf'     // 75个以上：紫色
                 ],
+                'circle-opacity': 0.8,
+                // 参考示例的半径设置，根据点数量动态调整大小
                 'circle-radius': [
                     'step',
                     ['get', 'point_count'],
-                    15,
+                    12,    // 基础大小：12px
+                    2,
+                    15,    // 2个以上：15px
                     10,
+                    20,    // 10个以上：20px
                     20,
-                    30,
-                    25
-                ]
+                    25,    // 20个以上：25px
+                    50,
+                    30,    // 50个以上：30px
+                    100,
+                    35     // 100个以上：35px
+                ],
+                'circle-stroke-width': 2,
+                'circle-stroke-color': '#ffffff'
             }
         });
     }
 
-    // 添加WiFi聚合数量文字图层
+    // 添加WiFi聚合数量文字图层 - 优化字体和大小
     if (!map.getLayer('wifi-cluster-count')) {
         map.addLayer({
             id: 'wifi-cluster-count',
             type: 'symbol',
             source: 'wifi-source',
-            filter: ['has', 'point_count'],
+            filter: ['>', ['get', 'point_count'], 1],  // 只显示大于1个点的聚合数量
             layout: {
-                'text-field': '{point_count_abbreviated}',
-                'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
-                'text-size': 12
+                'text-field': '{point_count}',  // 显示完整数字，不使用缩写
+                'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],  // 参考示例字体
+                'text-size': 14
+            },
+            paint: {
+                'text-color': '#ffffff',
+                'text-halo-color': '#000000',
+                'text-halo-width': 1
             }
         });
     }
 
-    // 添加WiFi单点图层
+    // 添加WiFi单点图层 - 优化图标大小
     if (!map.getLayer('wifi-points')) {
         map.addLayer({
             id: 'wifi-points',
@@ -805,15 +825,10 @@ const initWifiLayer = (map: any) => {
             filter: ['!', ['has', 'point_count']],
             layout: {
                 'icon-image': 'WIFI_ICON',
-                'icon-size': 0.4,
+                'icon-size': 0.6,  // 适当增大单点图标
                 'icon-anchor': 'center',
                 'icon-allow-overlap': true,
-                // 临时禁用文字标签，只显示图标
-                // 'text-field': ['get', 'ssid'],
-                // 'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
-                // 'text-offset': [0, 1.5],
-                // 'text-anchor': 'top',
-                // 'text-size': 10
+                'visibility': 'visible'
             },
             paint: {
                 'text-color': '#000000',
@@ -821,6 +836,17 @@ const initWifiLayer = (map: any) => {
                 'text-halo-width': 1
             }
         });
+    }
+    
+    // 确保聚合图层可见
+    if (map.getLayer('wifi-clusters')) {
+        map.setLayoutProperty('wifi-clusters', 'visibility', 'visible');
+    }
+    if (map.getLayer('wifi-cluster-count')) {
+        map.setLayoutProperty('wifi-cluster-count', 'visibility', 'visible');
+    }
+    if (map.getLayer('wifi-points')) {
+        map.setLayoutProperty('wifi-points', 'visibility', 'visible');
     }
 };
 
