@@ -1,0 +1,955 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.48679322677279,
+          40.08981648794511
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_0",
+        "type": "wifi",
+        "ssid": "ASUS_1644",
+        "signalQuality": 55,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.36069513267826,
+          39.93161220010934
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_1",
+        "type": "wifi",
+        "ssid": "Office-WiFi_9241",
+        "signalQuality": 79,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.31674838990445,
+          40.09426368043727
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_2",
+        "type": "wifi",
+        "ssid": "ChinaNet_4064",
+        "signalQuality": 47,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.34580671671665,
+          39.934661427661695
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_3",
+        "type": "wifi",
+        "ssid": "Free-WiFi_2869",
+        "signalQuality": 48,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.39708250769105,
+          39.93827795506254
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_4",
+        "type": "wifi",
+        "ssid": "Free-WiFi_7377",
+        "signalQuality": 52,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3136614556629,
+          40.04118144001289
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_5",
+        "type": "wifi",
+        "ssid": "Home-Network_4298",
+        "signalQuality": 88,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.34090627099283,
+          40.02275059522818
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_6",
+        "type": "wifi",
+        "ssid": "Office-WiFi_4770",
+        "signalQuality": 34,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4806985380586,
+          40.000768300513435
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_7",
+        "type": "wifi",
+        "ssid": "D-Link_8039",
+        "signalQuality": 98,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3082180908897,
+          40.00976108980649
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_8",
+        "type": "wifi",
+        "ssid": "MERCURY_9593",
+        "signalQuality": 25,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.33768147848643,
+          39.93781279796465
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_9",
+        "type": "wifi",
+        "ssid": "ASUS_9241",
+        "signalQuality": 41,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.36157300969366,
+          40.015326519266026
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_10",
+        "type": "wifi",
+        "ssid": "Linksys_1390",
+        "signalQuality": 29,
+        "operator": "其他",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.34741786961342,
+          39.98893665376407
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_11",
+        "type": "wifi",
+        "ssid": "FAST_182",
+        "signalQuality": 29,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3212883104981,
+          40.057563256289775
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_12",
+        "type": "wifi",
+        "ssid": "Guest-WiFi_2821",
+        "signalQuality": 24,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.37281210733381,
+          40.040626351018666
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_13",
+        "type": "wifi",
+        "ssid": "Office-WiFi_5574",
+        "signalQuality": 10,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.328911885396,
+          40.02763435587225
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_14",
+        "type": "wifi",
+        "ssid": "Free-WiFi_5877",
+        "signalQuality": 79,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4933229091701,
+          39.947906814993026
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_15",
+        "type": "wifi",
+        "ssid": "Office-WiFi_5932",
+        "signalQuality": 75,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.49171081558623,
+          39.932442700914606
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_16",
+        "type": "wifi",
+        "ssid": "CMCC_7259",
+        "signalQuality": 64,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.39155404453882,
+          40.09518634523917
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_17",
+        "type": "wifi",
+        "ssid": "Huawei_7415",
+        "signalQuality": 20,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.40445054829591,
+          39.91387757381734
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_18",
+        "type": "wifi",
+        "ssid": "TP-LINK_900",
+        "signalQuality": 3,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.38768298806156,
+          39.94489810789258
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_19",
+        "type": "wifi",
+        "ssid": "Guest-WiFi_3506",
+        "signalQuality": 46,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.44796289265877,
+          40.09555542576893
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_20",
+        "type": "wifi",
+        "ssid": "Office-WiFi_6731",
+        "signalQuality": 78,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4385714071975,
+          40.01720379123728
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_21",
+        "type": "wifi",
+        "ssid": "D-Link_8828",
+        "signalQuality": 12,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.31275723252867,
+          39.91700520891121
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_22",
+        "type": "wifi",
+        "ssid": "Linksys_6998",
+        "signalQuality": 71,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.30145754596393,
+          40.07863077481163
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_23",
+        "type": "wifi",
+        "ssid": "Linksys_5660",
+        "signalQuality": 53,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.42293690910651,
+          39.96575275378434
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_24",
+        "type": "wifi",
+        "ssid": "Netgear_3955",
+        "signalQuality": 74,
+        "operator": "其他",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.31936109825752,
+          39.971193044336296
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_25",
+        "type": "wifi",
+        "ssid": "D-Link_8060",
+        "signalQuality": 96,
+        "operator": "其他",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.33817084055823,
+          39.991907992001565
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_26",
+        "type": "wifi",
+        "ssid": "TP-LINK_2748",
+        "signalQuality": 38,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3199446302164,
+          39.9724121409813
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_27",
+        "type": "wifi",
+        "ssid": "D-Link_831",
+        "signalQuality": 71,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.45907483411409,
+          40.063904768901565
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_28",
+        "type": "wifi",
+        "ssid": "D-Link_8733",
+        "signalQuality": 96,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.31436760266938,
+          39.917466212721884
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_29",
+        "type": "wifi",
+        "ssid": "TP-LINK_5542",
+        "signalQuality": 94,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.33890189847521,
+          40.089791605153685
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_30",
+        "type": "wifi",
+        "ssid": "ChinaUnicom_4518",
+        "signalQuality": 16,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.31399706984122,
+          39.99451346324243
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_31",
+        "type": "wifi",
+        "ssid": "Home-Network_7834",
+        "signalQuality": 17,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.40498256926307,
+          39.93284654464883
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_32",
+        "type": "wifi",
+        "ssid": "FAST_2189",
+        "signalQuality": 27,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.37613278957362,
+          39.938430543618146
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_33",
+        "type": "wifi",
+        "ssid": "Guest-WiFi_1857",
+        "signalQuality": 90,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.36369158296078,
+          39.95387378192235
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_34",
+        "type": "wifi",
+        "ssid": "FAST_3721",
+        "signalQuality": 71,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3489483808598,
+          40.095167748105375
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_35",
+        "type": "wifi",
+        "ssid": "ChinaNet_9494",
+        "signalQuality": 19,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4967765677727,
+          40.0662952320616
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_36",
+        "type": "wifi",
+        "ssid": "Netgear_2490",
+        "signalQuality": 22,
+        "operator": "其他",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.35793258422653,
+          39.90335196399398
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_37",
+        "type": "wifi",
+        "ssid": "FAST_58",
+        "signalQuality": 30,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.38828140701722,
+          39.99473659116343
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_38",
+        "type": "wifi",
+        "ssid": "Home-Network_6514",
+        "signalQuality": 39,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.44790606232222,
+          39.948266905083614
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_39",
+        "type": "wifi",
+        "ssid": "D-Link_8895",
+        "signalQuality": 84,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.33883501913097,
+          39.946556095684805
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_40",
+        "type": "wifi",
+        "ssid": "D-Link_3853",
+        "signalQuality": 89,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3949281903362,
+          39.914244129277556
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_41",
+        "type": "wifi",
+        "ssid": "Office-WiFi_9757",
+        "signalQuality": 15,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.42184526227943,
+          39.92695917352979
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_42",
+        "type": "wifi",
+        "ssid": "Home-Network_6756",
+        "signalQuality": 54,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.41362332127821,
+          39.99685224172083
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_43",
+        "type": "wifi",
+        "ssid": "D-Link_2317",
+        "signalQuality": 38,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.45097582293468,
+          39.96470734566221
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_44",
+        "type": "wifi",
+        "ssid": "ChinaUnicom_2956",
+        "signalQuality": 33,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.32701892844453,
+          40.07287679807419
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_45",
+        "type": "wifi",
+        "ssid": "Xiaomi_5676",
+        "signalQuality": 92,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.34186498976392,
+          40.05703913760983
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_46",
+        "type": "wifi",
+        "ssid": "FAST_6159",
+        "signalQuality": 90,
+        "operator": "中国联通",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.47037116071054,
+          40.000406171340806
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_47",
+        "type": "wifi",
+        "ssid": "Home-Network_2939",
+        "signalQuality": 87,
+        "operator": "其他",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.39618080265734,
+          39.92450643782352
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_48",
+        "type": "wifi",
+        "ssid": "Free-WiFi_1674",
+        "signalQuality": 84,
+        "operator": "中国电信",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.38370893356624,
+          39.95253524160513
+        ]
+      },
+      "properties": {
+        "id": "wifi_1756717464456_49",
+        "type": "wifi",
+        "ssid": "Xiaomi_5953",
+        "signalQuality": 14,
+        "operator": "中国移动",
+        "selected": false,
+        "cz": "自动生成"
+      }
+    }
+  ]
+}

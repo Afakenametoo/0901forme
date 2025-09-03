@@ -17,7 +17,7 @@ export const statisticsStore = defineStore("statistics", {
     YS_POINT_COUNT: 25594,
     WS_LINE_LENGTH: 260.425,
     YS_LINE_LENGTH: 425.792,
-    WIFI_POINT_COUNT: 12345,
+    WIFI_POINT_COUNT: 2000,
   }),
   actions: {
     // 初始化统计数据

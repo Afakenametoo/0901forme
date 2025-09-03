@@ -277,7 +277,7 @@ const specialLayer = [
           name: 'WS_POINT',
           label: '污水井盖',
           showLabel: false, // 默认关闭注记
-          url: '/files/geojson/WS_POINT.geojson',
+          url: '/files/geojson/wifi.geojson',
           layout: {
             'icon-image': 'WS',  // 使用之前加载的图标名称
             'icon-size': 0.13,   // 设置图标大小

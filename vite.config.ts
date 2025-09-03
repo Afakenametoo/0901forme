@@ -69,10 +69,10 @@ export default defineConfig(({command, mode}) => {
                     target: config.VITE_NGINX,
                     changeOrigin: true
                 },
-                '/files': {
+                /* '/files': {
                     target: config.VITE_NGINX,
                     changeOrigin: true
-                },
+                }, */
                 '/tiles': {
                     target: config.VITE_NGINX,
                     changeOrigin: true
