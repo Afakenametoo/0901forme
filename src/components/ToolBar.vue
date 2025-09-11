@@ -1,10 +1,3 @@
-<!--
- * @Author: lily 784710791@qq.com
- * @Date: 2025-02-18 16:27:35
- * @LastEditTime: 2025-03-05 09:55:28
- * @LastEditors: Sleip
- * @Description: 描述
--->
 <template>
   <div class="toolbar" :class="{ expanded: toolbarExpanded }">
       <!-- 初始状态下只有一个按钮 -->

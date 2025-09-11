@@ -1,19 +1,8 @@
-<!--
- * @Author: 
- * @Date: 2024-12-11 09:17:11
- * @LastEditors: Sleip
- * @LastEditTime: 2025-02-19 16:29:38
- * @FilePath: \underground_pipelines_display\src\components\BaseMap.vue
- * @Description: 
- * Copyright (c) 2024 by Sleip, All Rights Reserved. 
--->
 <!--基础地图组件-->
 <template>
   <div class="container">
     <!-- 地图 -->
     <div class="baseMap" id="baseMap"></div>
-
-    <img src="../assets/TL.png" alt="TL" class="TL">
     <!-- 工具栏 -->
     <div class="tools">
       <div class="item" v-for="(item) in options" :key="item.id" @click="clickTool(item.id)"

@@ -1,11 +1,3 @@
-<!--
- * @Author: lily 784710791@qq.com
- * @Date: 2024-12-02 11:23:06
- * @LastEditTime: 2025-02-27 15:35:31
- * @LastEditTime: 2025-01-15 15:39:11
- * @LastEditors: Sleip
- * @Description: 图层控制
--->
 <template>
   <div class="layer-container">
     <div class="title">
@@ -13,7 +5,7 @@
     </div>
     <div class="box">
       <div class="left-box">
-        <el-button v-for="(item) in layer.layerList" class="left-box-button" @click="layer.clickLayer(item.id)">
+        <el-button v-for="(item) in layer.layerList" :key="item.id" class="left-box-button" @click="layer.clickLayer(item.id)">
           {{ item.name }}
         </el-button>
       </div>
@@ -27,7 +19,7 @@
           <template #default="{ data }">
             <span>{{ data.label }}</span>
             <!-- 注记开关 -->
-            <el-switch v-if="!data.children && data.type === 'symbol'" v-model="data.showLabel"
+            <!-- <el-switch v-if="!data.children && data.type === 'symbol'" v-model="data.showLabel"
               @change="setLayerVisible(data.showLabel, data.name, 'label')">
               <template #active-action>
                 <span class="custom-active-action">注</span>
@@ -35,7 +27,7 @@
               <template #inactive-action>
                 <span class="custom-inactive-action">注</span>
               </template>
-            </el-switch>
+            </el-switch> -->
             <!-- 流向开关 -->
             <el-switch v-if="!data.children && data.type === 'line'" v-model="data.showFlow"
               @change="setLayerVisible(data.showFlow, data.name, 'flow')">

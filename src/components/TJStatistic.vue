@@ -14,8 +14,8 @@
           <el-radio-group
               v-model="TJToolbar.typeRadio"
           >
-            <el-radio :value="1">井盖</el-radio>
-            <el-radio :value="2">管线</el-radio>
+            <el-radio :value="1">WIFI</el-radio>
+            <!-- <el-radio :value="2">管线</el-radio> -->
           </el-radio-group>
         </div>
       </div>
@@ -40,6 +40,8 @@
           </el-checkbox>
         </el-checkbox-group>
       </div>
+
+
       <div class="select-box">
         <div class="title">街道选择</div>
         <el-select class="select-street" v-model="TJToolbar.checkedStreet"
@@ -75,7 +77,8 @@
           </el-checkbox>
         </el-checkbox-group>
       </div>
-      <div class="select-box" v-show="TJToolbar.typeRadio === 1">
+
+      <!-- <div class="select-box" v-show="TJToolbar.typeRadio === 1">
       <div class="title">地面高程选择</div>
       <el-checkbox
           :indeterminate="TJToolbar.rangeIndeterminate"
@@ -95,8 +98,8 @@
         >{{ type }}
         </el-checkbox>
       </el-checkbox-group>
-    </div>
-      <div class="select-box" v-show="TJToolbar.typeRadio === 1">
+    </div> -->
+      <!-- <div class="select-box" v-show="TJToolbar.typeRadio === 1">
         <div class="title">特征选择</div>
         <el-checkbox
             :indeterminate="TJToolbar.featureIndeterminate"
@@ -116,7 +119,7 @@
           >{{ type }}
           </el-checkbox>
         </el-checkbox-group>
-      </div>
+      </div> -->
       <el-divider><i class="el-icon-arrow-up"></i></el-divider>
     </div>
     <!--    echarts-->
@@ -152,8 +155,8 @@ const TJToolbar = reactive({
   // 图层（雨水污水） 全选控制
   layerIndeterminate: false,
   layerCheckAll: true,
-  layers: ['雨水', '污水'],
-  checkedLayers: ['雨水', '污水'],
+  layers: ['雨水', '污水','WIFI'],
+  checkedLayers: ['雨水', '污水','WIFI'],
   // 材质 全选控制
   typeIndeterminate: false,
   typeCheckAll: true,

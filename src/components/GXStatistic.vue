@@ -13,8 +13,9 @@
           <el-radio-group
               v-model="GXToolbar.typeRadio"
           >
-            <el-radio :value="1" :label="1">井盖</el-radio>
-            <el-radio :value="2" :label="2">管线</el-radio>
+            <el-radio :value="1" :label="1">WIFI</el-radio>
+            <!-- <el-radio :value="2" :label="2">管线</el-radio> -->
+            
           </el-radio-group>
         </div>
       </div>
@@ -49,6 +50,7 @@ const GXToolbar = reactive({
   typeRadio: 0,
   jgData: {area: [], type: []},
   gxData: {area: [], type: []},
+  wifiData: {area: [], type: []},
 })
 
 const areaChart = ref(null)
@@ -57,9 +59,11 @@ const typeChart = ref(null)
 const initData = async () => {
   const jgTypeData = await getJgTypeAndNum()
   const gxTypeData = await getLineTypeAndNum()
+  // const wifiData = await getWifiAndNum()
 
   const jgFeatureData = await getJgFeatureAndNum()
   const gxDiameterData = await getLineDiameterAndNum()
+  // const wifiData = await getWifiAndNum()
 
   // 初始化数据
   GXToolbar.jgData.type = jgTypeData.data.data

@@ -861,8 +861,19 @@
     });
   
     // 激活框选功能
-    loadActivateBoxSelect(bStore.boxMap, selectedLayers, (selectedFeatures) => {
+    loadActivateBoxSelect(bStore.boxMap, selectedLayers, (selectedFeatures,polygon) => {
       if (!selectedFeatures || selectedFeatures.length === 0) return;
+      // 新增：展示选中范围的坐标信息
+    if (polygon && polygon.coordinates) {
+      // 格式化范围坐标（保留6位小数）
+      const formattedCoords = polygon.coordinates[0]
+        .map(coord => `[${coord[0].toFixed(6)}, ${coord[1].toFixed(6)}]`)
+        .join('\n');
+      
+      // 弹窗展示选中范围
+      alert(`选中范围坐标：\n${formattedCoords}`);
+    }
+    //新增完成
   
       // 初始化或清空查询结果
       queryResult.value = queryResult.value || { WS_POINT: [], YS_POINT: [], WS_LINE: [], YS_LINE: [] };

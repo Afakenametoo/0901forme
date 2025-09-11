@@ -61,27 +61,27 @@ const initMap = () => {
         })
         // 加载图标（确保你提供的是支持的图片格式，SVG 不支持）
         if (!map.hasImage('YS')) {
-            map.loadImage('src/assets/YS.png', (error, image) => {
+            map.loadImage('src/assets/YS.png', (error: any, image: any) => {
                 if (error) throw error; // 如果加载失败则抛出错误
-                map.addImage('YS', image);  // 添加图标到 Mapbox
+                if (image) map.addImage('YS', image);  // 添加图标到 Mapbox
             });
         }
         if (!map.hasImage('WS')) {
-            map.loadImage('src/assets/WS.png', (error, image) => {
+            map.loadImage('src/assets/WS.png', (error: any, image: any) => {
                 if (error) throw error; // 如果加载失败则抛出错误
-                map.addImage('WS', image);  // 添加图标到 Mapbox
+                if (image) map.addImage('WS', image);  // 添加图标到 Mapbox
             });
         }
         if (!map.hasImage('WS_H')) {
-            map.loadImage('src/assets/WS_H.png', (error, image) => {
+            map.loadImage('src/assets/WS_H.png', (error: any, image: any) => {
                 if (error) throw error; // 如果加载失败则抛出错误
-                map.addImage('WS_H', image);  // 添加图标到 Mapbox
+                if (image) map.addImage('WS_H', image);  // 添加图标到 Mapbox
             });
         }
         if (!map.hasImage('YS_H')) {
-            map.loadImage('src/assets/YS_H.png', (error, image) => {
+            map.loadImage('src/assets/YS_H.png', (error: any, image: any) => {
                 if (error) throw error; // 如果加载失败则抛出错误
-                map.addImage('YS_H', image);  // 添加图标到 Mapbox
+                if (image) map.addImage('YS_H', image);  // 添加图标到 Mapbox
             });
         }
         // 创建简单的WiFi图标
@@ -270,7 +270,7 @@ const addClusterPointLayer = (map: any, item: any, options: { beforeId?: string 
                 type: 'geojson',
                 data: item.url,
                 cluster: true,
-                clusterMaxZoom: 10,
+                // clusterMaxZoom: 10,
                 clusterRadius: 50
             })
         }
@@ -474,7 +474,7 @@ const setClusterListen = (map: any, name: any) => {
         const clusterId = features[0].properties.cluster_id;
         map.getSource(name).getClusterExpansionZoom(
             clusterId,
-            (err, zoom) => {
+            (err: any, zoom: number) => {
                 if (err) return;
                 map.easeTo({
                     center: features[0].geometry.coordinates,
@@ -746,9 +746,8 @@ const initWifiLayer = (map: any) => {
                 features: []
             },
             cluster: true,
-            clusterMinZoom:7,
-            clusterMaxZoom: 15,  // 在更高的缩放级别（18）才停止聚合，让聚合效果更持久
-            clusterRadius: 50    // 增大聚合半径，让更多点聚合在一起
+            clusterMaxZoom: 16,  // 在更高的缩放级别（18）才停止聚合，让聚合效果更持久
+            clusterRadius: 45    // 增大聚合半径，让更多点聚合在一起
         });
         console.log('WiFi数据源已创建，优化聚合设置: maxZoom=18, radius=50');
     }

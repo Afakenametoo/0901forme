@@ -11,6 +11,7 @@ export const getJgTypeAndNum = async () => {
 }
 
 
+
 // 获取管线材质及数量
 export const getLineTypeAndNum = async () => {
     return request({
